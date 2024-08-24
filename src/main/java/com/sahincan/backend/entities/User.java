@@ -1,4 +1,4 @@
-package com.sahincan.demo.entities;
+package com.sahincan.backend.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,6 @@ import lombok.Data;
 @Entity
 @Table(name = "user")
 @Data
-// public record User(@Id long id,String userName , String password){}
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -9,6 +9,7 @@
 /comments
 /comments?postId={postId}
 /comments?user={userId}
+/comments?postId={postId}&userId={userId}
 /comments/{commentId}
 
 

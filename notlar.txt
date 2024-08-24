@@ -1,0 +1,12 @@
+// Long userId;
+        /* NOTE: 
+        @MantToOne -> Normalde eager yani Post objesi oluşturulurken otomatik olarak User objesi de çekilecekti
+        // ancak Lazy dediğimizde , sadece user e ihtiyacımız olunca çekecek
+        @JoinColumn -> sql deki join in aynısı . buradaki user ile userdeki user_id yi birleştirmek eşleştirmek için
+        kullanıyoruz 
+        @OnDelete -> bir post objesi silindiğinde , o user e ait tüm postların silinmesi için kullanıyoruz. 
+        Bunu OnDeleteAction dan Cascade yi çağırarak yapıyoruz
+
+        @JsonIgnore -> serializable işlemi sırasında çıktıyı engeller . Json çıktı alırken bu field gözükmez
+         
+        */

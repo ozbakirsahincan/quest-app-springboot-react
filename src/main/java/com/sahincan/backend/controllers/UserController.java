@@ -1,15 +1,11 @@
-package com.sahincan.demo.controllers;
+package com.sahincan.backend.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-import java.util.Optional;
+import com.sahincan.backend.entities.User;
+import com.sahincan.backend.services.UserService;
 
-import com.sahincan.demo.entities.User;
-import com.sahincan.demo.repositories.UserRepository;
-
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,61 +14,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
+
 
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     // Endpoint: /users [GET]
     @GetMapping
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 
     // Endpoint: /users/{userId} [GET]
     @GetMapping("/{userId}")
     public User getOneUser(@PathVariable Long userId) {
-        // TODO: custom exception ekle
-
-        
-        return userRepository.findById(userId).orElse(null);
+        return userService.getOneUser(userId);
     }
     
 
     // Endpoint: /users [POST]
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User newUser) {
-        var createdUser = userRepository.save(newUser);
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        return userService.saveOneUser(newUser);
     }
 
     // Endpoint: /users/{userId} [PUT]
     @PutMapping("/{userId}")
     public User updateOneUser(@PathVariable Long userId , @RequestBody User newUser) {
-        Optional<User> user = userRepository.findById(userId);
-        if(user.isPresent()) {
-            User foundUser = user.get();
-            foundUser.setUserName(newUser.getUserName());
-            foundUser.setPassword(newUser.getPassword());
-            userRepository.save(foundUser);
-            return foundUser;
-        } else {
-            
-            // TODO: exception yaz
-            return null;
-        }
+        return userService.updateOneUser(userId , newUser);
     }
 
+    // Endpoint: /users/{userId} [DELETE]
     @DeleteMapping("/{userId}")
     public void deleteOneUser(@PathVariable Long userId) {
 
-        userRepository.deleteById(userId);
+        userService.deleteById(userId);
     }
 }

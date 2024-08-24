@@ -1,4 +1,4 @@
-package com.sahincan.demo;
+package com.sahincan.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
