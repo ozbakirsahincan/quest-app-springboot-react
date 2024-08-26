@@ -30,7 +30,7 @@ public class UserService {
         return new ResponseEntity<>(createdUser,HttpStatus.CREATED);
     }
 
-    public User getOneUser(Long userId) {
+    public User getOneUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);
     }
 

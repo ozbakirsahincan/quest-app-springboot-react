@@ -1,21 +1,26 @@
 package com.sahincan.backend.responses;
 
 import com.sahincan.backend.entities.Post;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
 public class PostResponse {
-    private Long id;
-    private String title;
-    private String text;
-    private Long userId;
-
-    public PostResponse(Post post) {
-        this.id = post.getId();
-        this.title = post.getTitle();
-        this.text = post.getText();
-        this.userId = post.getUser().getId(); // İlgili userId'yi alıyoruz.
-    }
+	
+	Long id;
+	Long userId;
+	String userName;
+	String title;
+	String text;
+	List<LikeResponse> postLikes;
+	
+	public PostResponse(Post entity, List<LikeResponse> likes) {
+		this.id = entity.getId();
+		this.userId = entity.getUser().getId();
+		this.userName = entity.getUser().getUserName();
+		this.title = entity.getTitle();
+		this.text = entity.getText();
+		this.postLikes = likes;
+	}
 }
-

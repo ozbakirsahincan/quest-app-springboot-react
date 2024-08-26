@@ -40,9 +40,9 @@ public class PostService {
         /*
          * User'ın gerçekten var olup olmadığını bilmemiz gerekiyor
          * user ı aramak için userService sınıfını çağırıyoruz
-         * userServicenin altındaki getOneUser methodu repository sınıfıyla bağlantılı
+         * userServicenin altındaki getOneUserById methodu repository sınıfıyla bağlantılı
          * çalışıyor
-         * getOneUser methodu veritabanına findAll methodu aracıyla
+         * getOneUserById methodu veritabanına findAll methodu aracıyla
          * select * from user where id = (dışarıdan gönderilen userId) sorgusunu
          * çalıştıracak
          * dışarıdan gönderilen userId Post yaratılmak için verilen request in
@@ -72,7 +72,7 @@ public class PostService {
          */
 
         // Record sınıflı hali
-        User user = userService.getOneUser(newPostRequest.userId());
+        User user = userService.getOneUserById(newPostRequest.userId());
         if (user == null)
             return null;
 
@@ -84,7 +84,7 @@ public class PostService {
         return postRepository.save(toSave);
 
         // Lomboklu Class hali
-        // User user = userService.getOneUser(newPostRequest.getUserId());
+        // User user = userService.getOneUserById(newPostRequest.getUserId());
         // if (user == null)
         // return null;
 

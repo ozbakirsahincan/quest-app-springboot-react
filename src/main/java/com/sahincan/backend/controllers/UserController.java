@@ -36,8 +36,8 @@ public class UserController {
 
     // Endpoint: /users/{userId} [GET]
     @GetMapping("/{userId}")
-    public User getOneUser(@PathVariable Long userId) {
-        return userService.getOneUser(userId);
+    public User getOneUserById(@PathVariable Long userId) {
+        return userService.getOneUserById(userId);
     }
     
 
